@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Class</title>
+    <!--<link rel="stylesheet" href="css/styles.css">!-->
+    <script type="text/javascript">
+
+
+//extends - allows Car to inherit properties of Object
+    class Car extends Object {
+        constructor(color = "red"){ //"red" is default value if none is recieved when creating new Car;
+            super(); //super is a method - use Object's creator instructions to create Car
+            this.type = "";
+            this.color = color;
+            this.manufacturer = "Ford";
+            this.year = 2017;
+            this.transmission = "automatic";
+            this.model = "Focus";
+
+        }
+
+        startTheCar() { //function key word and =>  are not used when creating methods of an object (can be used inside methods)
+            let x = () => {console.log("I am started");};
+            x();
+
+        }
+
+        get engineType () { //getter function - gets value of the property whose name is same as the function - value can't be changed
+            return "its a v8";
+
+        }
+        /* set engineType (typeOfEngine) { //setter function
+            this.engineType = typeoOfEngine;
+        }*/
+    }
+
+    let samsCar = new Car("yellow");
+    console.log(samsCar.color);
+    samsCar.color = "blue";
+    console.log(samsCar.color);
+    let jessesCar = new Car();
+    console.log(jessesCar.engineType);
+    jessesCar.engineType = "V6";
+    console.log(jessesCar.engineType);
+    jessesCar.startTheCar();
+
+    </script>
+
+</head>
+<body>
+
+
+</body>
+</html>
