@@ -2,20 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Video Player</title>
-    <link rel="stylesheet" href="./dist/style.css">
+    <title>Simple_Simple Video Player</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script type="text/javascript">
+
+        function onReady(e) {
+            var videoFigureTag = document.getElementById('video_player');
+            var videoTag = document.querySelector("#video_player video");
+            var sourceTag = document.querySelector("#video_player video source");
+            var getAnchors = document.getElementsByTagName("a");
+
+            /*var gethrefAnchors = function(){
+                var hrefAnchor = document.getElementsByTagName("a")[0].getAttribute("href");
+                for (var i = 0; i < document.getElementsByTagName("a").length; i++) {
+                    hrefAnchor = document.getElementsByTagName("a")[i].getAttribute("href");
+                console.log(hrefAnchor);
+                }
+
+            };*/
+
+            var getAllAnchors = document.querySelectorAll("#video_player figcaption a");
+            
+
+
+            console.log(videoFigureTag);
+            console.log(videoTag);
+            console.log(sourceTag);
+            //gethrefAnchors();
+            for ( var ai = 0; ai < getAllAnchors.length; ai++) {
+                console.log(getAllAnchors[ai].getAttribute("href"));
+                var currentAnchor = getAnchors[ai];
+                currentAnchor.addEventListener("click", onAnchorClick, false);
+            }
+        }
+
+        function onAnchorClick(e) {
+            e.preventDefault(); //removes default behaviour of e (in our case <a>);
+            var video = document.querySelector("#video_player video");
+            video.removeAttribute("controls");
+            video.removeAttribute("poster");
+
+            var currentElement = e.target; //img inside <a>
+            var currentLink = e.target.parentElement; //<a>, which is the parent of img
+            console.log (currentLink);
+
+            var currentHref = currentLink.getAttribute("href");
+            var source = document.querySelectorAll("#video_player video source");
+            source[0].src = currentHref; //replacing "src" attribute with currentHref value of new <a>
+
+            video.load(); //method retrieve file
+            video.play(); //method to play file
+        }
+
+        window.addEventListener("load", onReady, false);
+
+    </script>
+
 </head>
 <body>
 <h1>Welcome to My Video Player</h1>
 <figure id="video_player">
     <video controls poster="./images/nambia1.jpg">
-        <source src="./videos/nambia1.mp4" type="video/mp4">
-        <source src="./videos/nambia1.webm" type="video/webm">
+        <source src="./media/nambia1.mp4" type="video/mp4">
+        <source src="./media/nambia1.webm" type="video/webm">
     </video>
     <figcaption>
-        <a href="./videos/nambia1.mp4"><img src="./images/nambia1.jpg" alt="Nambia Timelapse 1"></a>
-        <a href="./videos/nambia2.mp4"><img src="./images/nambia2.jpg" alt="Nambia Timelapse 2"></a>
-        <a href="./videos/nambia3.mp4"><img src="./images/nambia3.jpg" alt="Nambia Timelapse 3"></a>
+        <a href="./media/nambia1.mp4"><img src="./images/nambia1.jpg" alt="Nambia Timelapse 1"></a>
+        <a href="./media/nambia2.mp4"><img src="./images/nambia2.jpg" alt="Nambia Timelapse 2"></a>
+        <a href="./media/nambia3.mp4"><img src="./images/nambia3.jpg" alt="Nambia Timelapse 3"></a>
     </figcaption>
 </figure>
 
